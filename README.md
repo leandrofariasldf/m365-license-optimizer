@@ -1,100 +1,55 @@
 # 🚀 M365 License & Access Optimizer
 
-  
-
 ![PowerShell](https://img.shields.io/badge/PowerShell-Core-blue?logo=powershell&logoColor=white)
-
 ![Power Automate](https://img.shields.io/badge/Power_Automate-Flow-36a1fa?logo=powerautomate&logoColor=white)
-
 ![Microsoft Teams](https://img.shields.io/badge/Microsoft_Teams-Adaptive_Cards-6264A7?logo=microsoftteams&logoColor=white)
-
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-  
-
 ### 📋 Project Overview
-
 **Automated Governance for Microsoft 365 Licensing**
-
-  
 
 This project addresses a common challenge in large organizations: **License Sprawl**. It provides an automated workflow to identify inactive users ("zombie accounts"), validate their status with their direct managers via Microsoft Teams, and revoke unused licenses to reduce operational costs (OPEX).
 
-  
-
 The solution replaces manual audits with a **Zero-Touch Governance** approach, integrating PowerShell scripting with low-code orchestration.
 
-  
-
 ---
-
-  
 
 ### 🛠️ Tech Stack & Key Concepts
-
 * **PowerShell Core:** Utilizes `Microsoft Graph API` for tenant auditing and user activity analysis.
-
 * **Power Automate:** Orchestrates the logic, HTTP request handling, and approval workflow.
-
 * **Adaptive Cards (JSON):** Delivers a rich, interactive user interface directly within Microsoft Teams chat.
-
 * **SecOps & Governance:** Enforces "Least Privilege" principles by removing access from inactive accounts.
 
-  
-
 ---
-
-  
 
 ### 📸 System Architecture & Design
 
-  
-
 #### 1. Logical Architecture Workflow
-
 The diagram below represents the data flow from the audit script to the governance action.
-
 *(Rendered automatically via Mermaid.js)*
 
-  
-
 ```mermaid
-
 graph LR
-
-%% Flow Nodes
-
-PS[PowerShell Audit<br/>(Graph API)] -->|HTTP POST JSON| PA(Power Automate<br/>Logic Flow)
-
-PA -->|Adaptive Card| TM[Teams Manager<br/>Approval]
-
-TM -->|User Action| D{Decision}
-
-%% Decision Paths
-
-D -->|Revoke| A1[Remove License<br/>& Save Cost]
-
-D --o|Keep| A2[Whitelist User<br/>(30 Days)]
-
-D -.->|Report| A3[Open Service Desk<br/>Ticket]
-
-%% Styling
-
-classDef ps fill:#2D7979,stroke:#333,stroke-width:2px,color:#fff;
-
-classDef auto fill:#0078D4,stroke:#333,stroke-width:2px,color:#fff;
-
-classDef teams fill:#6264A7,stroke:#333,stroke-width:2px,color:#fff;
-
-classDef decision fill:#fff,stroke:#333,stroke-width:2px,color:#333;
-
-class PS ps;
-
-class PA auto;
-
-class TM teams;
-
-class D decision;
+    %% Flow Nodes
+    PS["PowerShell Audit<br/>(Graph API)"] -->|HTTP POST JSON| PA("Power Automate<br/>Logic Flow")
+    PA -->|Adaptive Card| TM["Teams Manager<br/>Approval"]
+    TM -->|User Action| D{Decision}
+    
+    %% Decision Paths
+    D -->|Revoke| A1["Remove License<br/>& Save Cost"]
+    D --o|Keep| A2["Whitelist User<br/>(30 Days)"]
+    D -.->|Report| A3["Open Service Desk<br/>Ticket"]
+    
+    %% Styling
+    classDef ps fill:#2D7979,stroke:#333,stroke-width:2px,color:#fff;
+    classDef auto fill:#0078D4,stroke:#333,stroke-width:2px,color:#fff;
+    classDef teams fill:#6264A7,stroke:#333,stroke-width:2px,color:#fff;
+    classDef decision fill:#fff,stroke:#333,stroke-width:2px,color:#333;
+    
+    class PS ps;
+    class PA auto;
+    class TM teams;
+    class D decision;
 
 ```
 
