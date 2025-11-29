@@ -1,0 +1,60 @@
+{
+    "type": "AdaptiveCard",
+    "body": [
+        {
+            "type": "TextBlock",
+            "size": "Medium",
+            "weight": "Bolder",
+            "text": "⚠️ License Optimization Alert",
+            "color": "Attention"
+        },
+        {
+            "type": "TextBlock",
+            "text": "The following user has been inactive for over 90 days. Please verify if they still require an E3 License.",
+            "wrap": true
+        },
+        {
+            "type": "FactSet",
+            "facts": [
+                {
+                    "title": "User:",
+                    "value": "fernanda.costa@suaempresa.com"
+                },
+                {
+                    "title": "License:",
+                    "value": "Microsoft 365 E3"
+                },
+                {
+                    "title": "Last Active:",
+                    "value": "95 days ago"
+                }
+            ]
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.Submit",
+            "title": "✅ Keep License (User is Active)",
+            "data": {
+                "action": "keep"
+            }
+        },
+        {
+            "type": "Action.Submit",
+            "title": "❌ Revoke License (Save Cost)",
+            "data": {
+                "action": "revoke"
+            },
+            "style": "destructive"
+        },
+        {
+            "type": "Action.Submit",
+            "title": "🛠️ Report Technical Issue",
+            "data": {
+                "action": "support_ticket"
+            }
+        }
+    ],
+    "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+    "version": "1.4"
+}
